@@ -10,17 +10,16 @@ namespace ShortUrl.DataModel
     {
         public DbSet<UrlInfo> UrlInfoSet { get; set; }
 
-        public readonly IConfiguration Configuration;
+        readonly string ConnString;
 
-        public ShortUrlContext(IConfiguration configuration)
+        public ShortUrlContext(string connString)
         {
-            Configuration = configuration;    
+            ConnString = connString;    
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connStr = Configuration.GetConnectionString("ShortUrl");
-            optionsBuilder.UseSqlServer(connStr);
+            optionsBuilder.UseSqlServer(ConnString);
         }
     }
 }
