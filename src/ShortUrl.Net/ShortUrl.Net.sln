@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.WebApi", "ShortUrl.WebApi\ShortUrl.WebApi.csproj", "{D96DE2DC-9652-4BE6-8A3E-300FF8FCAA3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.WebApi", "ShortUrl.WebApi\ShortUrl.WebApi.csproj", "{D96DE2DC-9652-4BE6-8A3E-300FF8FCAA3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.DataModel", "ShortUrl.DataModel\ShortUrl.DataModel.csproj", "{D4627B3B-45F2-403B-A5C4-F7C835B04A16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Persistence", "ShortUrl.DataModel\ShortUrl.Persistence.csproj", "{D4627B3B-45F2-403B-A5C4-F7C835B04A16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShortUrl.DataModel\ShortUrl.DataModel.csproj" />
+    <ProjectReference Include="..\ShortUrl.DataModel\ShortUrl.Persistence.csproj" />
   </ItemGroup>
 
 
