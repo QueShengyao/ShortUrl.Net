@@ -10,8 +10,6 @@ namespace ShortUrl.DataModel
     {
         public DbSet<UrlInfo> UrlInfoSet { get; set; }
 
-        readonly string ConnString;
-
         public ShortUrlContext(string connString)
         {
             ConnString = connString;    
