@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShortUrl.DataModel
+namespace ShortUrl.Persistence
 {
     public class UrlInfo
     {

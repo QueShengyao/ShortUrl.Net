@@ -5,9 +5,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ShortUrl.DataModel;
 
-namespace ShortUrl.DataModel.Migrations
+namespace ShortUrl.Persistence.Migrations
 {
     [DbContext(typeof(ShortUrlContext))]
     [Migration("20201220162002_InitialCreate")]

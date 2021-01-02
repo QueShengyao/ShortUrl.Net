@@ -1,4 +1,4 @@
-﻿using ShortUrl.DataModel;
+﻿using ShortUrl.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ShortUrl.DataModel.Migrations
+namespace ShortUrl.Persistence.Migrations
 {
     public partial class InitialCreate : Migration
     {

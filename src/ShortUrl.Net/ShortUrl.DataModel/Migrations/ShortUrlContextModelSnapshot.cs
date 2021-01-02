@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ShortUrl.DataModel;
+using ShortUrl.Persistence;
 
-namespace ShortUrl.DataModel.Migrations
+namespace ShortUrl.Persistence.Migrations
 {
     [DbContext(typeof(ShortUrlContext))]
     partial class ShortUrlContextModelSnapshot : ModelSnapshot
