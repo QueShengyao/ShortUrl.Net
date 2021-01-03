@@ -17,19 +17,26 @@ namespace ShortUrl.Persistence.Repository
             _context = context;
         }
 
-        public void Delete(object id)
+        public async Task DeleteAsync(object id)
         {
-            throw new NotImplementedException();
+            var entity = await GetAsync(id);
+            _context.UrlInfoSet.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public UrlInfo Get(object id)
+        public async Task<UrlInfo> GetAsync(object id)
         {
-            throw new NotImplementedException();
+            return await _context.UrlInfoSet.AsNoTracking().FirstOrDefaultAsync(item => item.Id == (int)id);
         }
 
-        public UrlInfo InsertOrUpdate(UrlInfo entity)
+        public async Task<UrlInfo> InsertOrUpdateAsync(UrlInfo entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            var updated = _context.Update(entity);
+            await _context.SaveChangesAsync();
+            return updated.Entity;
         }
     }
 }

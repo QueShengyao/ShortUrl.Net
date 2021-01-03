@@ -8,8 +8,8 @@ namespace ShortUrl.Persistence.Repository
 {
     public interface IEntityRepository<T> where T: class
     {
-        T Get(object id);
-        T InsertOrUpdate(T entity);
-        void Delete(object id);
+        Task<T> GetAsync(object id);
+        Task<T> InsertOrUpdateAsync(T entity);
+        Task DeleteAsync(object id);
     }
 }
