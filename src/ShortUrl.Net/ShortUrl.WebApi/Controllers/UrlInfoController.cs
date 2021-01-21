@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ShortUrl.DataModel.DataContract;
 using ShortUrl.Persistence;
 using ShortUrl.Persistence.Repository;
+using ShortUrl.Service;
 
 namespace ShortUrl.WebApi.Controllers
 {
@@ -12,20 +15,23 @@ namespace ShortUrl.WebApi.Controllers
     [ApiController]
     public class UrlInfoController : ControllerBase
     {
-        private readonly ShortUrlContext _context;
+        private readonly IShortUrlService _suService;
 
-        public UrlInfoController(IUrlInfoRepository context)
+        public UrlInfoController(IShortUrlService service)
         {
-            _context = context;
+            _suService = service;
         }
 
         // GET: api/UrlInfo
+        /*
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ShortUrlDC>>> GetUrlInfoSet()
         {
             return await _context.UrlInfoSet.AsNoTracking().ToListAsync();
         }
+        */
 
+        /*
         // GET: api/UrlInfo/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ShortUrlDC>> GetUrlInfo(int id)
@@ -39,41 +45,15 @@ namespace ShortUrl.WebApi.Controllers
 
             return urlInfo;
         }
+        */
 
-        // PUT: api/UrlInfo/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/UrlInfo
+        // To protect from over posting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUrlInfo(int id, ShortUrlDC urlInfo)
+        public async Task<ShortUrlDC> PutUrlInfo(ShortUrlDC urlInfo)
         {
-            if (id != urlInfo.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(urlInfo).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UrlInfoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        private bool UrlInfoExists(int id)
-        {
-            return _context.UrlInfoSet.AsNoTracking().Any(e => e.Id == id);
+            var result = await _suService.GenerateUrlAsync(urlInfo.OriginalUrl);
+            return result;
         }
     }
 }

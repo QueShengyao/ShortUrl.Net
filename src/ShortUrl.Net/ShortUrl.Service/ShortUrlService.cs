@@ -11,7 +11,12 @@ namespace ShortUrl.Service
         Task<ShortUrlDC> GenerateUrlAsync(string originalUrl);
     }
 
-    public class ShortUrlService : IShortUrlGenerator
+    public interface IShortUrlService : IShortUrlGenerator
+    {
+
+    }
+
+    public class ShortUrlService : IShortUrlService
     {
         private readonly IUrlInfoRepository _urlRepo;
         public ShortUrlService(IUrlInfoRepository urlRepo)
