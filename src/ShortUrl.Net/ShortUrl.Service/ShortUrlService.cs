@@ -1,19 +1,34 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ShortUrl.DataModel.DataContract;
+using ShortUrl.Persistence;
+using ShortUrl.Persistence.Repository;
 
 namespace ShortUrl.Service
 {
     public interface IShortUrlGenerator
     {
-        ShortUrlDC GenerateUrl(string originalUrl);
+        Task<ShortUrlDC> GenerateUrlAsync(string originalUrl);
     }
 
     public class ShortUrlService : IShortUrlGenerator
     {
-        
-        public ShortUrlDC GenerateUrl(string originalUrl)
+        private readonly IUrlInfoRepository _urlRepo;
+        public ShortUrlService(IUrlInfoRepository urlRepo)
         {
-            throw new NotImplementedException();
+            _urlRepo = urlRepo;
+        }
+
+        public async Task<ShortUrlDC> GenerateUrlAsync(string originalUrl)
+        {
+            var newInfo = new UrlInfo()
+            {
+                Url = originalUrl,
+                CreatedDate = DateTime.UtcNow
+            };
+            await _urlRepo.InsertOrUpdateAsync(newInfo);
+            var inserted = await _urlRepo.GetAsync(newInfo.Id);
+            return new ShortUrlDC(inserted);
         }
     }
 }

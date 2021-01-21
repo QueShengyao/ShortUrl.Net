@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShortUrl.Persistence;
+using ShortUrl.Persistence.Repository;
 
 namespace ShortUrl.WebApi.Controllers
 {
@@ -13,21 +14,21 @@ namespace ShortUrl.WebApi.Controllers
     {
         private readonly ShortUrlContext _context;
 
-        public UrlInfoController(ShortUrlContext context)
+        public UrlInfoController(IUrlInfoRepository context)
         {
             _context = context;
         }
 
         // GET: api/UrlInfo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UrlInfo>>> GetUrlInfoSet()
+        public async Task<ActionResult<IEnumerable<ShortUrlDC>>> GetUrlInfoSet()
         {
             return await _context.UrlInfoSet.AsNoTracking().ToListAsync();
         }
 
         // GET: api/UrlInfo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UrlInfo>> GetUrlInfo(int id)
+        public async Task<ActionResult<ShortUrlDC>> GetUrlInfo(int id)
         {
             var urlInfo = await _context.UrlInfoSet.FindAsync(id);
 
@@ -42,7 +43,7 @@ namespace ShortUrl.WebApi.Controllers
         // PUT: api/UrlInfo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUrlInfo(int id, UrlInfo urlInfo)
+        public async Task<IActionResult> PutUrlInfo(int id, ShortUrlDC urlInfo)
         {
             if (id != urlInfo.Id)
             {
@@ -66,33 +67,6 @@ namespace ShortUrl.WebApi.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
-        }
-
-        // POST: api/UrlInfo
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<UrlInfo>> PostUrlInfo(UrlInfo urlInfo)
-        {
-            _context.UrlInfoSet.Add(urlInfo);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUrlInfo", new { id = urlInfo.Id }, urlInfo);
-        }
-
-        // DELETE: api/UrlInfo/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUrlInfo(int id)
-        {
-            var urlInfo = await _context.UrlInfoSet.FindAsync(id);
-            if (urlInfo == null)
-            {
-                return NotFound();
-            }
-
-            _context.UrlInfoSet.Remove(urlInfo);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }

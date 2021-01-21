@@ -1,4 +1,5 @@
 ﻿using System;
+using ShortUrl.Persistence;
 
 namespace ShortUrl.DataModel.DataContract
 {
@@ -6,6 +7,15 @@ namespace ShortUrl.DataModel.DataContract
     {
         public string ShortUrl { get; set; }
         public string OriginalUrl { get; set; }
-        public DateTimeOffset CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
+
+        public ShortUrlDC() { }
+
+        public ShortUrlDC(UrlInfo shortUrl)
+        {
+            ShortUrl = shortUrl.Id.ToString();
+            OriginalUrl = shortUrl.Url;
+            CreatedTime = shortUrl.CreatedDate;
+        }
     }
 }
