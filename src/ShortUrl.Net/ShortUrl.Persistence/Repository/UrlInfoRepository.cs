@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace ShortUrl.Persistence.Repository
 {
-    class UrlInfoRepository : IUrlInfoRepository
+    public class UrlInfoRepository : IUrlInfoRepository
     {
-        private  ShortUrlContext _context;
+        private readonly ShortUrlContext _context;
 
         public UrlInfoRepository(ShortUrlContext context)
         {

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ShortUrl.DataModel.DataContract;
-using ShortUrl.Persistence;
-using ShortUrl.Persistence.Repository;
 using ShortUrl.Service;
 
 namespace ShortUrl.WebApi.Controllers
@@ -49,10 +43,10 @@ namespace ShortUrl.WebApi.Controllers
 
         // PUT: api/UrlInfo
         // To protect from over posting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<ShortUrlDC> PutUrlInfo(ShortUrlDC urlInfo)
+        [HttpPut]
+        public async Task<ShortUrlDC> PutUrlInfo(ShortUrlParameter parameter)
         {
-            var result = await _suService.GenerateUrlAsync(urlInfo.OriginalUrl);
+            var result = await _suService.GenerateUrlAsync(parameter.OriginalUrl);
             return result;
         }
     }

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ShortUrl.Service;
 using Swashbuckle.AspNetCore.Swagger;
@@ -36,11 +37,16 @@ namespace ShortUrl.WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo(){ Title = "API", Version = "v1"});
             });
 
-            services.AddTransient<IShortUrlGenerator, ShortUrlService>();
-
             services.AddControllers();
             var shortUrlStr = Configuration.GetConnectionString("ShortUrl");
+            //services.AddDbContextFactory<ShortUrlContext>(opt =>
+            //{
+            //    opt.UseSqlServer(shortUrlStr);
+
+            //});
             services.AddScoped((a) => new ShortUrlContext(shortUrlStr));
+            services.AddScoped<IShortUrlService, ShortUrlService>();
+            services.AddScoped<IUrlInfoRepository, UrlInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
