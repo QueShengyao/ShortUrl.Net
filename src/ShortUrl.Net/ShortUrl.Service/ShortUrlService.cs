@@ -11,7 +11,12 @@ namespace ShortUrl.Service
         Task<ShortUrlDC> GenerateUrlAsync(string originalUrl);
     }
 
-    public interface IShortUrlService : IShortUrlGenerator
+    public interface IShortUrlRetrieve
+    {
+        Task<string> RetrieveUrlAsync(int id);
+    }
+
+    public interface IShortUrlService : IShortUrlGenerator, IShortUrlRetrieve
     {
 
     }
@@ -24,6 +29,7 @@ namespace ShortUrl.Service
             _urlRepo = urlRepo;
         }
 
+        #region  IShortUrlGenerator
         public async Task<ShortUrlDC> GenerateUrlAsync(string originalUrl)
         {
             var newInfo = new UrlInfo()
@@ -35,5 +41,16 @@ namespace ShortUrl.Service
             var inserted = await _urlRepo.GetAsync(newInfo.Id);
             return new ShortUrlDC(inserted);
         }
+        #endregion
+
+        #region IShortUrlRetrieve
+
+        public async Task<string> RetrieveUrlAsync(int id)
+        {
+            var info = await _urlRepo.GetAsync(id);
+            return info.Url;
+        }
+
+        #endregion
     }
 }

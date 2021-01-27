@@ -28,7 +28,7 @@ namespace ShortUrl.Persistence.Repository
         public async Task<UrlInfo> InsertOrUpdateAsync(UrlInfo entity)
         {
             if (entity == null)
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
 
             var updated = _context.Update(entity);
             await _context.SaveChangesAsync();

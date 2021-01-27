@@ -72,6 +72,15 @@ namespace ShortUrl.WebApi
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "shortUrl",
+                    pattern: "{id}",
+                    defaults: new 
+                        { 
+                            controller = "Home", 
+                            action = "ShortUrlRedirect"
+                        }
+                    );
                 endpoints.MapControllers();
             });
         }
