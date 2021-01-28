@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.WebApi", "ShortUrl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Persistence", "ShortUrl.Persistence\ShortUrl.Persistence.csproj", "{CB271BB8-1885-4FB3-A306-17FBBD99B607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.DataModel", "ShortUrl.DataModel\ShortUrl.DataModel.csproj", "{87C7F13E-2BFE-4448-8F59-99D9B3FB9E14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.DataModel", "ShortUrl.DataModel\ShortUrl.DataModel.csproj", "{87C7F13E-2BFE-4448-8F59-99D9B3FB9E14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortUrl.Service", "ShortUrl.Service\ShortUrl.Service.csproj", "{5529AF34-3312-403A-942B-4D66B3A1780D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortUrl.Service", "ShortUrl.Service\ShortUrl.Service.csproj", "{5529AF34-3312-403A-942B-4D66B3A1780D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{62AF0DE7-16FE-4230-A89A-D9DC127307D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5529AF34-3312-403A-942B-4D66B3A1780D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5529AF34-3312-403A-942B-4D66B3A1780D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5529AF34-3312-403A-942B-4D66B3A1780D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62AF0DE7-16FE-4230-A89A-D9DC127307D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AF0DE7-16FE-4230-A89A-D9DC127307D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AF0DE7-16FE-4230-A89A-D9DC127307D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AF0DE7-16FE-4230-A89A-D9DC127307D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
