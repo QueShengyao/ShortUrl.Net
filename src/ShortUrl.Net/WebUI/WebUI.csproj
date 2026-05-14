@@ -16,7 +16,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShortUrl.DataModel\ShortUrl.DataModel.csproj" />
+    <ProjectReference Include="..\ShortUrl.Persistence\ShortUrl.Persistence.csproj" />
+    <ProjectReference Include="..\ShortUrl.Service\ShortUrl.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

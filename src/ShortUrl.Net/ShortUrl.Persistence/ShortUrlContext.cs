@@ -11,6 +11,12 @@ namespace ShortUrl.Persistence
         public DbSet<UrlInfo> UrlInfoSet { get; set; }
 
         private readonly string _connString;
+
+        public ShortUrlContext(DbContextOptions<ShortUrlContext> options)
+            : base(options)
+        {
+        }
+
         public ShortUrlContext(string connString)
         {
             _connString = connString;    
@@ -18,7 +24,10 @@ namespace ShortUrl.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connString);
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrWhiteSpace(_connString))
+            {
+                optionsBuilder.UseSqlServer(_connString);
+            }
         }
     }
 }

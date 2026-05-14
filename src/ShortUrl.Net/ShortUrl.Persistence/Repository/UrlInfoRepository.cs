@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShortUrl.Persistence.Repository
@@ -23,6 +25,15 @@ namespace ShortUrl.Persistence.Repository
         public async Task<UrlInfo> GetAsync(object id)
         {
             return await _context.UrlInfoSet.AsNoTracking().FirstOrDefaultAsync(item => item.Id == (int)id);
+        }
+
+        public async Task<IReadOnlyCollection<UrlInfo>> GetRecentAsync(int count)
+        {
+            return await _context.UrlInfoSet
+                .AsNoTracking()
+                .OrderByDescending(item => item.CreatedDate)
+                .Take(count)
+                .ToListAsync();
         }
 
         public async Task<UrlInfo> InsertOrUpdateAsync(UrlInfo entity)
