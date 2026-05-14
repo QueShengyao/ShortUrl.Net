@@ -9,5 +9,6 @@ namespace ShortUrl.Persistence.Repository
 {
     public interface IUrlInfoRepository: IEntityRepository<UrlInfo>
     {
+        Task<IReadOnlyCollection<UrlInfo>> GetRecentAsync(int count);
     }
 }
